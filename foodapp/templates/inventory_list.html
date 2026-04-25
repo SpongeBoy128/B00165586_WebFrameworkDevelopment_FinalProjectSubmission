@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inventory - Food Project{% endblock %}
+
+{% block content %}
+<h2>Inventory Items</h2>
+<img src="{% static 'images/foodapp_image_03.png' %}" alt="Delicious Meats Image" style="max-width:100%; border-radius: 10px; margin-bottom: 20px;" class="small-image" />
+<p style="font-size: small; color: grey;">© 2026 Neo Glennon/B00165586. Original artwork created from scratch.</p> <br />
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity in Stock</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.category.name }}</td>
+            <td>{{ item.quantity_in_stock }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No items found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Candidates - Food Project{% endblock %}
+
+{% block content %}
+<h2>Candidates</h2>
+<img src="{% static 'images/foodapp_image_02.png' %}" alt="Delicious Vegetables Image" style="max-width:100%; border-radius: 10px; margin-bottom: 20px;" class="small-image" />
+<p style="font-size: small; color: grey;">© 2026 Neo Glennon/B00165586. Original artwork created from scratch.</p> <br />
+
+<ul>
+    {% for candidate in candidates %}
+    <li><a href="{% url 'candidate_detail' candidate.id %}">{{ candidate.first_name }} {{ candidate.last_name }}</a></li>
+    {% empty %}
+    <li>No Candidates Found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Food Project{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    </head>
+    <body>
+        <header>
+            <h1>Food Project</h1>
+            <nav>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'candidate_list' %}">Candidates</a>
+                <a href="{% url 'inventory_list' %}">Inventory</a>
+                <a href="{% url 'support_cases' %}">Support Cases</a>
+                <a href="{% url 'sales_order' %}">Sales Orders</a>
+                <a href="{% url 'payroll' %}">Payroll</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </nav>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer>
+            <p>© 2026 Food Project. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

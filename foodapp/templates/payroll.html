@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payroll - Food Project{% endblock %}
+
+{% block content %}
+<h2>Payroll Entries</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Salary</th>
+            <th>Bonus</th>
+            <th>Deductions</th>
+            <th>Pay Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in payroll_entries %}
+        <tr>
+            <td>{{ entry.employee.first_name }} {{ entry.employee.last_name }}</td>
+            <td>${{ entry.salary }}</td>
+            <td>${{ entry.bonus }}</td>
+            <td>${{ entry.deductions }}</td>
+            <td>{{ entry.pay_date|date:"Y-m-d" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No payroll entries found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

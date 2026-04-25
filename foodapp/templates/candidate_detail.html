@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Candidate Details - Food Project{% endblock %}
+
+{% block content %}
+<h2>{{ candidate.first_name }} {{ candidate.last_name }}</h2>
+<p>Email: {{ candidate.email }}</p>
+<p>Phone: {{ candidate.phone }}</p>
+<p>Resume: <a href="{{ candidate.resume_link }}" target="_blank">View Resume</a></p>
+
+<h3>Skills</h3>
+<ul>
+    {% for skill in candidate.skills.all %}
+    <li>{{ skill.skill.name }} - {{ skill.proficiency_level }} ({{ skill.years_experience }} years)</li>
+    {% empty %}
+    <li>No skills listed.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
